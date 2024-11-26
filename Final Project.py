@@ -2,7 +2,21 @@ import re
 import pandas as pd
 import csv
 import sys
-import argparse
+from argparse import ArgumentParser
+
+def movie_database(movies):
+    """
+    Turns movies_list csv into a dataframe object
+        
+    Args:
+    Data: movie data csv file
+        
+    Return:
+    movies list dataframe
+    """
+    mdf = pd.read_csv(movies)
+    return mdf
+
 
 class Search:
     def __init__ (self, data, keyword):
@@ -89,3 +103,20 @@ class Search:
     List of movies we recommend
     """
 
+def parse_args(arglist):
+    """Parse command-line arguments
+
+    Args:
+    arglist(list of str): list of command-line arguments
+
+    Returns:
+    namespace: the parsed command-line arguments as a namespace 
+    with movie data csv file
+    """
+    parser = ArgumentParser()
+    parser.add_argument("movieslist_csv", help="movie data CSV")
+    return parser.parse_args(arglist)
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    movie_db = movie_database(args.movieslist_csv)
