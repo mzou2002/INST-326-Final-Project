@@ -4,17 +4,36 @@ import csv
 import sys
 from argparse import ArgumentParser
 
-def movie_database(movies):
+def movie_database(movies, keyword):
     """
     Turns movies_list csv into a dataframe object
         
     Args:
     Data: movie data csv file
+    keyword(str): which search option to search for
         
     Return:
     movies list dataframe
     """
+    search = Search()
     mdf = pd.read_csv(movies)
+
+    if keyword == "genre":
+        search.genre(movies)
+    elif keyword == "year":
+        search.year(movies)
+    elif keyword == "ratings":
+        search.movie_rating(movies)
+    elif keyword == "duration":
+        search.movie_duration(movies)
+    elif keyword == "name":
+        search.movie_name(movies)
+    elif keyword == "content ratings":
+        search.content_rating(movies)
+    elif keyword == "recommendation":
+        search.recommendation(movies)
+    else:
+        print("That's not one of the options.")
     return mdf
 
 
@@ -23,7 +42,6 @@ class Search:
         self.data = data
         self.keyword = keyword
 
-        
     def genre(self):
         """
         Searches movies by genre
@@ -122,4 +140,4 @@ def parse_args(arglist):
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    movie_db = movie_database(args.movieslist_csv)
+    movie_db = movie_database(args.movieslist_csv, args.keyword)
