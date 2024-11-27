@@ -20,7 +20,9 @@ def movie_database(movies):
 
 class Search:
     def __init__ (self, data, keyword):
-        pass
+        self.data = data
+        self.keyword = keyword
+        
 
     def genre(self):
         """
@@ -32,7 +34,7 @@ class Search:
         Return:
         List of movies with matching genre
         """
-
+        
     def year(self):
         pass
 
@@ -114,7 +116,7 @@ def parse_args(arglist):
     with movie data csv file
     """
     parser = ArgumentParser()
-    parser.add_argument("movieslist_csv", help="movie data CSV")
+    parser.add_argument("movieslist_csv", type = csv, help="movie data CSV file")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
