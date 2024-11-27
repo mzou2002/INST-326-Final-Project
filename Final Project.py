@@ -42,19 +42,19 @@ def movie_database(movies, keyword):
 
 
     if keyword == "genre":
-        search.genre(movies)
+        search.genre(mdf)
     elif keyword == "year":
-        search.year(movies)
+        search.year(mdf)
     elif keyword == "ratings":
-        search.movie_rating(movies)
+        search.movie_rating(mdf)
     elif keyword == "duration":
-        search.movie_duration(movies)
+        search.movie_duration(mdf)
     elif keyword == "name":
-        search.movie_name(movies)
+        search.movie_name(mdf)
     elif keyword == "content ratings":
-        search.content_rating(movies)
+        search.content_rating(mdf)
     elif keyword == "recommendation":
-        search.recommendation(movies)
+        search.recommendation(mdf)
     else:
         print("That's not one of the options.")
   
