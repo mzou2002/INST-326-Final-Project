@@ -1,4 +1,5 @@
 import re
+import sqlite3
 import pandas as pd
 import csv
 import sys
@@ -16,7 +17,29 @@ def movie_database(movies, keyword):
     movies list dataframe
     """
     search = Search()
+    
+    # Movie data file
     mdf = pd.read_csv(movies)
+    
+    # Connects to database
+    conn = sqlite3.connect('movies.db')
+    cursor = conn.cursor()
+    
+    # CREATES TABLE OF MOVIES
+    create = '''CREATE TABLE IF NOT EXISTS movies ()
+                position INTEGER PRIMARY KEY, title TEXT, url TEXT, rating REAL, runtime INTEGER, year INTEGER, genre TEXT, directors TEXT, content_rating TEXT
+                )'''
+    cursor.execute(create)
+    
+    # SHOULD INSERT ALL ROWS FROM CSV INTO TABLE
+    insert = '''INSERT INTO movies VALUES (?,?,?,?,?,?,?,?,?)'''
+        
+    for row in mdf.itertuples(index = False, name = None):
+        cursor.executemany(insert, row)
+
+
+
+
 
     if keyword == "genre":
         search.genre(movies)
