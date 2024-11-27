@@ -20,16 +20,10 @@ def movie_database(movies):
 
 class Search:
     def __init__ (self, data, keyword):
-<<<<<<< HEAD
         self.data = data
         self.keyword = keyword
-        
-=======
-        data = self.data
-        keyword = self.keyword
-        pass
->>>>>>> 36c7313de9e8408975f54c73ac3207489696cdb3
 
+        
     def genre(self):
         """
         Searches movies by genre
@@ -40,12 +34,8 @@ class Search:
         Return:
         List of movies with matching genre
         """
-<<<<<<< HEAD
-        
-=======
+        movie_file = movie_database(self.data)
 
-
->>>>>>> 36c7313de9e8408975f54c73ac3207489696cdb3
     def year(self):
         pass
 
@@ -127,37 +117,9 @@ def parse_args(arglist):
     with movie data csv file
     """
     parser = ArgumentParser()
-<<<<<<< HEAD
     parser.add_argument("movieslist_csv", type = csv, help="movie data CSV file")
-=======
-    parser.add_argument("movieslist_csv", help="movie data CSV")
-    parser.add_argument("input_choice", help="how user plans to search movie data")
->>>>>>> 36c7313de9e8408975f54c73ac3207489696cdb3
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     movie_db = movie_database(args.movieslist_csv)
-    input_choice = args.input_choice
-    print("Welcome to Movie Recommender, press option you would like to search our database based on!" +
-          "Input 1 to search based on genre"
-          "Input 2 to search based on year of release"
-          "Input 3 to search based on movie rating"
-          "Input 4 to search based on movie duration"
-          "Input 5 to search based on content rating"
-          "Input 6 to search based on random recommendation")
-    match input_choice:
-        case 1:
-            print(Search(movie_db).genre)
-        case 2:
-            print(Search(movie_db).year)
-        case 3:
-            print(Search(movie_db).movie_rating)
-        case 4:
-            print(Search(movie_db).movie_duration)
-        case 5:
-            print(Search(movie_db).content_rating)
-        case 6:
-            print(Search(movie_db).recommendation)
-
-    
