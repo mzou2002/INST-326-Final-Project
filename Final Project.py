@@ -5,7 +5,7 @@ import csv
 import sys
 from argparse import ArgumentParser
 
-def movie_database(movies, keyword):
+def movie_database(movies):
     """
     Turns movies_list csv into a dataframe object
         
@@ -16,8 +16,7 @@ def movie_database(movies, keyword):
     Return:
     movies list dataframe
     """
-    search = Search()
-    
+
     # Movie data file
     mdf = pd.read_csv(movies)
     
@@ -26,7 +25,7 @@ def movie_database(movies, keyword):
     cursor = conn.cursor()
     
     # CREATES TABLE OF MOVIES
-    create = '''CREATE TABLE IF NOT EXISTS movies ()
+    create = '''CREATE TABLE IF NOT EXISTS movies (
                 position INTEGER PRIMARY KEY, title TEXT, url TEXT, rating REAL, runtime INTEGER, year INTEGER, genre TEXT, directors TEXT, content_rating TEXT
                 )'''
     cursor.execute(create)
@@ -37,34 +36,36 @@ def movie_database(movies, keyword):
     for row in mdf.itertuples(index = False, name = None):
         cursor.executemany(insert, row)
 
+    conn.commit()
 
-
-
-
-    if keyword == "genre":
-        search.genre(mdf)
-    elif keyword == "year":
-        search.year(mdf)
-    elif keyword == "ratings":
-        search.movie_rating(mdf)
-    elif keyword == "duration":
-        search.movie_duration(mdf)
-    elif keyword == "name":
-        search.movie_name(mdf)
-    elif keyword == "content ratings":
-        search.content_rating(mdf)
-    elif keyword == "recommendation":
-        search.recommendation(mdf)
-    else:
-        print("That's not one of the options.")
-  
-
+    read = '''SELECT position, title, url, rating, runtime, year, genre, directors, content_rating FROM movies'''
+    test = cursor.execute(read).fetchall()
+    print(test)
 
 class Search:
     def __init__ (self, data, keyword):
         self.data = data
         self.keyword = keyword
+        result = ""
+        if keyword == "genre":
+            result.genre(data)
+        elif keyword == "year":
+            result.year(data)
+        elif keyword == "ratings":
+            result.movie_rating(data)
+        elif keyword == "duration":
+            result.movie_duration(data)
+        elif keyword == "name":
+            result.movie_name(data)
+        elif keyword == "content ratings":
+            result.content_rating(data)
+        elif keyword == "recommendation":
+            result.recommendation(data)
+        else:
+            print("That's not one of the options.")
 
+        return result
+    
     def genre(self):
         """
         Searches movies by genre
@@ -76,6 +77,8 @@ class Search:
         List of movies with matching genre
         """
         movie_file = movie_database(self.data)
+
+        return movie_file
 
     def year(self):
         pass
@@ -163,4 +166,6 @@ def parse_args(arglist):
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    movie_db = movie_database(args.movieslist_csv, args.keyword)
+    #movie_db = movie_database(args.movieslist_csv, args.keyword)
+    movie_db = movie_database(args.movieslist_csv)
+
