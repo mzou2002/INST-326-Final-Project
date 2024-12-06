@@ -42,7 +42,7 @@ def movie_database(movies):
     test = cursor.execute(read).fetchall()
     print(test)
 
-class Search:
+'''class Search:
     def __init__ (self, data, keyword):
         self.data = data
         self.keyword = keyword
@@ -150,6 +150,7 @@ class Search:
     List of movies we recommend
     """
 
+
 def parse_args(arglist):
     """Parse command-line arguments
 
@@ -164,8 +165,12 @@ def parse_args(arglist):
     parser.add_argument("movieslist_csv", type = csv, help="movie data CSV file")
     return parser.parse_args(arglist)
 
+
+'''
 if __name__ == "__main__":
-    args = parse_args(sys.argv[1:])
+    #args = parse_args(sys.argv[1:])
     #movie_db = movie_database(args.movieslist_csv, args.keyword)
-    movie_db = movie_database(args.movieslist_csv)
+    #movie_db = movie_database(args.movieslist_csv)
+    test = movie_database('movie database.csv')
+    test.input_data()
 
