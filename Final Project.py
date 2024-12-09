@@ -62,7 +62,7 @@ def movie_database(movies):
         elif keyword == "recommendation":
             result.recommendation(data)
         else:
-            print("That's not one of the options.")
+            print("That's not one of the options. Please try again.")
 
         return result
     
