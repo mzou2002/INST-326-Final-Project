@@ -44,8 +44,8 @@ def movie_database(movies):
 
 class Search:
     def __init__ (self, data, keyword):
-        self.data = data
-        self.keyword = keyword
+        self.data = movie_database(data)
+        self.keyword = keyword.lower()
         result = ""
         if keyword == "genre":
             result.genre(data)
@@ -162,7 +162,7 @@ def parse_args(arglist):
     with movie data csv file
     """
     parser = ArgumentParser()
-    parser.add_argument("movieslist_csv", type = csv, help="movie data CSV file")
+    parser.add_argument("movies database.csv", type = csv, help="movie data CSV file")
     return parser.parse_args(arglist)
 
 
@@ -171,6 +171,7 @@ if __name__ == "__main__":
     #args = parse_args(sys.argv[1:])
     #movie_db = movie_database(args.movieslist_csv, args.keyword)
     #movie_db = movie_database(args.movieslist_csv)
-    test = movie_database('movie database.csv')
+    test = Search('movie database.csv','genre')
     print (test)
 
+ 
