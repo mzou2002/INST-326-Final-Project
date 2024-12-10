@@ -11,46 +11,31 @@ def movie_database(movies):
     Return:
     List of tuples containing the first 5 rows of the movies table
     """
-    try:
-        # Movie data file
-        mdf = pd.read_csv(movies)
-        
-        # Connects to database
-        conn = sqlite3.connect('movies.db')
-        
-        # CREATES TABLE OF MOVIES
-        create = '''CREATE TABLE IF NOT EXISTS movies (
-                    position INTEGER PRIMARY KEY, 
-                    title TEXT, 
-                    url TEXT, 
-                    rating REAL, 
-                    runtime INTEGER, 
-                    year INTEGER, 
-                    genre TEXT, 
-                    directors TEXT, 
-                    content_rating TEXT
-                    )'''
-        conn.execute(create)
-        
-        # Insert data efficiently
-        mdf.to_sql('movies', conn, if_exists='replace', index=False)
 
-        # Read and return 
-        read = '''SELECT * 
-                  FROM movies'''
-        test = conn.execute(read).fetchall()
-        columns = ['position', 'title', 'url', 'rating', 'runtime', 
-                   'year', 'genre', 'directors', 'content_rating']
-        moviedf = pd.DataFrame(test, columns=columns)
-        return moviedf
+    # Movie data file
+    mdf = pd.read_csv(movies)
+    
+    # Connects to database
+    conn = sqlite3.connect('movies.db')
+    cursor = conn.cursor()
+    
+    # CREATES TABLE OF MOVIES
+    create = '''CREATE TABLE IF NOT EXISTS movies (
+                position INTEGER PRIMARY KEY, title TEXT, url TEXT, rating REAL, runtime INTEGER, year INTEGER, genre TEXT, directors TEXT, content_rating TEXT
+                )'''
+    cursor.execute(create)
+    
+    # SHOULD INSERT ALL ROWS FROM CSV INTO TABLE
+    insert = '''INSERT INTO movies VALUES (?,?,?,?,?,?,?,?,?)'''
+        
+    for row in mdf.itertuples(index = False, name = None):
+        cursor.executemany(insert, row)
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None
+    conn.commit()
 
-    finally:
-        if conn:
-            conn.close()
+    read = '''SELECT position, title, url, rating, runtime, year, genre, directors, content_rating FROM movies'''
+    test = cursor.execute(read).fetchall()
+    print(test)
 
 class Search:
     def __init__ (self, data, keyword1, keyword2):
@@ -140,11 +125,10 @@ class Search:
         Args:
         Data - csv file
 
-        Return:
-        List of movies we recommend
-        """
-        pass
-    
+    Return:
+    List of movies we recommend
+    """
+
 
 def parse_args(arglist):
     """Parse command-line arguments"""
@@ -153,6 +137,8 @@ def parse_args(arglist):
     parser.add_argument("keyword1", help="type of search")
     parser.add_argument("keyword2", help="additional word needed for search")
     return parser.parse_args(arglist)
+
+
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
