@@ -112,14 +112,14 @@ class Search:
         """
         pass
 
-    
 
     def movie_name(self):
         """Movie_name
         Data: movie data csv file
         Returns: Information about movie with matching name
         """
-        pass
+        movie_name_search = self.data[self.data['title'].str.contains(self.keyword1)]
+        return movie_name_search
 
     def content_rating(self):
         """Content_rating
