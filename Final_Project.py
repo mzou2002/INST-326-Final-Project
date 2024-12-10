@@ -120,8 +120,6 @@ class Search:
 
     def movie_name(self):
         pass
-
-
     """Movie_name
     Data: movie data csv file
     Returns: Information about movie with matching name
@@ -135,7 +133,7 @@ class Search:
     Data - csv file with movie data
 
     Returns:
-    Movie with 
+    Movie with the correct ratings
     """
 
     def recommendation(self):
