@@ -2,6 +2,7 @@ import sqlite3
 import pandas as pd
 import sys
 from argparse import ArgumentParser
+import random 
 
 def movie_database(movies):
     """
@@ -113,7 +114,7 @@ class Search:
         pass
     
 
-    def movie_duration(self, keyword):
+    def movie_duration(self):
         """
         Returns list of 10 longest or shortest movies in terms of duration
         Data: movie data csv file
@@ -155,10 +156,15 @@ class Search:
         Data - csv file
 
         Return:
-        List of movies we recommend
+        List of movies we recommend, based on how many recommendation you want
         """
-        pass
-    
+        recommendations = [] 
+        for _ in range(self.keyword2):
+            ran_num = random.randint(0, len(self.data) - 1)
+            movie = self.data.iloc[ran_num]  # Get the movie at the random index
+            recommendations.append(movie)
+       
+        return recommendations
 
 def parse_args(arglist):
     """Parse command-line arguments"""
