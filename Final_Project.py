@@ -62,7 +62,7 @@ class Search:
 
     
     def findmethod(self):
-        #call genre method if keyword matches
+        #call method if keyword matches
         if self.keyword1 == "genre":
             result = self.genre()
         elif self.keyword1 == "year":
@@ -133,8 +133,8 @@ class Search:
         """
         movie_duration_search = self.data[self.data['runtime']]
         movie = []
-        for movie in movie_duration_search:
-            if movie_duration_search <= self.keyword2:
+        for movie in movie_duration_search: 
+            if movie_duration_search <= self.keyword2: #if runtime in mins is less than or equal to given runtime
                 movie.append(movie_duration_search)
         return movie
 
