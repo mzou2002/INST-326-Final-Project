@@ -100,7 +100,8 @@ class Search:
         Returns:
         List of movies with matching year
         """
-        pass
+        year_search = self.data[self.data['year'].str.contains(self.keyword2)]
+        return year_search
 
     def movie_rating(self):
         """Movie_rating
@@ -143,9 +144,10 @@ class Search:
         Data - csv file with movie data
 
         Returns:
-        Movie with 
+        Movies with filtered age rating
         """
-        pass
+        content_rating_search = self.data[self.data['content rating'].str.contains(self.keyword2)]
+        return content_rating_search
     
 
     def recommendation(self):
