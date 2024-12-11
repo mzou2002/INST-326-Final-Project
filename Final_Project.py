@@ -164,8 +164,8 @@ def parse_args(arglist):
     """Parse command-line arguments"""
     parser = ArgumentParser()
     parser.add_argument("movie_database_csv", help="movie data CSV file")
-    parser.add_argument("keyword1", help="type of search")
-    parser.add_argument("keyword2", help="additional word needed for search")
+    parser.add_argument("keyword1", help="which preference filter to use")
+    parser.add_argument("keyword2", help="additional word used to search inside the filter")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
