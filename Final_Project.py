@@ -57,11 +57,25 @@ class Search:
         self.data = data
         self.keyword1 = keyword1
         self.keyword2 = keyword2
+
+
     
     def findmethod(self):
         #call genre method if keyword matches
         if self.keyword1 == "genre":
             result = self.genre()
+        elif self.keyword1 == "year":
+            result = self.year()
+        elif self.keyword1 == "movie rating":
+            result = self.movie_rating()
+        elif self.keyword1 == "movie duration":
+            result = self.movie_duration()
+        elif self.keyword1 == "movie name":
+            result = self.movie_name()
+        elif self.keyword1 == "content rating":
+            result = self.content_rating()
+        elif self.keyword1 == "recommendation":
+            result = self.recommendation()
         return result
 
     def genre(self):
