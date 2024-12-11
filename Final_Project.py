@@ -112,7 +112,12 @@ class Search:
         Returns:
         List of movies with matching rating
         """
-        pass
+        movie_rating_search = self.data[self.data['rating']]
+        movie = []
+        for rating in movie_rating_search:
+            if rating == self.keyword2:
+                movie.append(rating)
+        return movie
     
 
     def movie_duration(self):
@@ -126,7 +131,12 @@ class Search:
         Returns:
         List of movies
         """
-        pass
+        movie_duration_search = self.data[self.data['runtime']]
+        movie = []
+        for movie in movie_duration_search:
+            if movie_duration_search <= self.keyword2:
+                movie.append(movie_duration_search)
+        return movie
 
 
     def movie_name(self):
