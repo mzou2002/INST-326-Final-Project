@@ -77,6 +77,8 @@ class Search:
             result = self.content_rating()
         elif self.keyword1 == "recommendation":
             result = self.recommendation()
+        else:
+            result = "That's not one of the options. Please try again."
         return result
 
     def genre(self):
