@@ -56,8 +56,8 @@ def movie_database(movies):
 class Search:
     def __init__ (self, data, keyword1, keyword2):
         self.data = data
-        self.keyword1 = keyword1
-        self.keyword2 = keyword2
+        self.keyword1 = keyword1.lower()
+        self.keyword2 = keyword2.lower()
 
 
     
