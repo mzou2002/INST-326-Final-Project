@@ -6,11 +6,13 @@ import random
 
 def movie_database(movies):
     """
-    Turns movies_list csv into a SQLite database
+    Turns movie_database csv into a SQLite database
+    
     Args:
     movies (str): path to movie data csv file
+    
     Return:
-    List of tuples containing the first 5 rows of the movies table
+    Dataframe with information from the movie_database csv
     """
     try:
         # Movie data file
@@ -92,7 +94,7 @@ class Search:
     
     def year(self):
         """Year
-        Searches movie by the year.
+        Searches movies by the year released
 
         Args:
         Data - movie data csv file
@@ -104,14 +106,15 @@ class Search:
         return year_search
 
     def movie_rating(self):
-        """Movie_rating
-        Data: movie data csv file
+        """Searches movies by rating
+        
         Args:
         Data - movie data csv file
 
         Returns:
         List of movies with matching rating
         """
+        
         movie_rating_search = self.data[self.data['rating']]
         movie = []
         for rating in movie_rating_search:
@@ -122,8 +125,7 @@ class Search:
 
     def movie_duration(self):
         """
-        Returns list of 10 longest or shortest movies in terms of duration
-        Data: movie data csv file
+        Returns list of movies shorter than given duration
 
         Args:
         Data - movie data csv file
@@ -131,6 +133,7 @@ class Search:
         Returns:
         List of movies
         """
+        
         movie_duration_search = self.data[self.data['runtime']]
         movie = []
         for movie in movie_duration_search: 
@@ -140,16 +143,20 @@ class Search:
 
 
     def movie_name(self):
-        """Movie_name
+        """Searches by movie name
+        
+        Args:
         Data: movie data csv file
+        
         Returns: Information about movie with matching name
         """
+        
         movie_name_search = self.data[self.data['title'].str.contains(self.keyword1)]
         return movie_name_search
 
     def content_rating(self):
         """Content_rating
-        What age rating is the movie. For example, PG-13, R, etc.
+        Searches by age rating of the movie. For example, PG-13, R, etc.
         Args:
         Data - csv file with movie data
 
