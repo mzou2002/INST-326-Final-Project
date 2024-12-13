@@ -1,0 +1,28 @@
+INST326 Final Project Documentation
+Movie Recommender Group: Kyrene Jamero, Matthew Zou, Derik Luc, Riya Patel
+
+Overview:
+This program processes a CSV file containing movie data, stores it in a SQLite database, and allows users to search for movies based on various criteria or generate random movie recommendations. It provides an interactive way to query movie information using command-line inputs.
+Program Breakdown
+Database Creation:
+Reads a CSV file containing movie data.
+Creates a SQLite database with a movies table and populates it with the data from the CSV file.
+
+Search Functionality:
+Search movies by:
+Genre
+Year
+Movie rating (out of 10)
+Movie duration (mins)
+Movie name
+Content rating
+Generate random movie recommendations.
+
+Random Movie Recommendation:
+Recommends a specified number of movies randomly selected from the dataset.
+
+Usage:
+There are 3 inputs you have to put in order for the program to run. The database, first keyword which is the search function you're looking to use, second keyword is how you filter within the search function. For example, first input the movie database csv, then let's say you want to search by genre, the second keyword would be for example “Drama”. When searching by movie duration, the second keyword would be a movie runtime in minutes, for example 120. Content rating is for age appropriateness, which could be “G, PG, PG-13, R, NC-17”. Lastly, for the recommendation function, the second keyword is how many movies you want to return.
+
+Interpreting the Output:
+Interpreting the output is easy, no matter which search function you use, the outputs will look the same. There will be Position, Title, URL, IMDb, Rating, Runtime(mins), Year, Genres, Directors, Content Rating exactly in that order. It will show you everything you need to know about this movie(or movies).
