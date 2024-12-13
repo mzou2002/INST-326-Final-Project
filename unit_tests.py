@@ -1,4 +1,6 @@
-class TestMovieRecommendor(Search):
+import movie_search
+
+class TestMovieRecommendor(movie_search.Search):
     def __init__ (self, data, keyword1, keyword2):
         self.data = data
         self.keyword1 = keyword1.lower()
